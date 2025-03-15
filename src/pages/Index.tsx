@@ -2,6 +2,9 @@
 import { useState, useEffect } from "react";
 import { Toaster } from "sonner";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
+import { ArrowLeft, Save, Library } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import ApiKeyInput from "@/components/ApiKeyInput";
 import ImagePrompt from "@/components/ImagePrompt";
 import ImageDisplay from "@/components/ImageDisplay";
@@ -55,18 +58,62 @@ const Index = () => {
     }
   };
 
+  const handleSaveImage = () => {
+    if (!selectedImage) return;
+    
+    try {
+      // Get existing saved images
+      const savedImagesJson = localStorage.getItem("unix_saved_images");
+      const savedImages = savedImagesJson ? JSON.parse(savedImagesJson) : [];
+      
+      // Check if image is already saved
+      const isAlreadySaved = savedImages.some((img: GeneratedImage) => 
+        img.imageURL === selectedImage.imageURL
+      );
+      
+      if (isAlreadySaved) {
+        toast.info("Image already saved to library");
+        return;
+      }
+      
+      // Add new image to saved images
+      const updatedSavedImages = [selectedImage, ...savedImages];
+      localStorage.setItem("unix_saved_images", JSON.stringify(updatedSavedImages));
+      
+      toast.success("Image saved to library");
+    } catch (error) {
+      console.error("Save error:", error);
+      toast.error("Failed to save image");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white px-4 py-12 md:py-20">
       <Toaster position="top-center" />
       
-      <header className="max-w-5xl mx-auto text-center mb-12 animate-fade-in">
-        <div className="inline-block px-4 py-1 mb-4 rounded-full bg-unix-subtle text-unix-muted text-sm font-medium">
-          Image Generation
+      <header className="max-w-5xl mx-auto mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <div className="inline-block px-4 py-1 mb-2 rounded-full bg-unix-subtle text-unix-muted text-sm font-medium">
+              Image Generation
+            </div>
+            <h1 className="text-3xl font-semibold">Unix Generator</h1>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link to="/">
+              <Button variant="outline" size="sm" className="flex items-center gap-1">
+                <ArrowLeft className="h-4 w-4" />
+                Home
+              </Button>
+            </Link>
+            <Link to="/library">
+              <Button variant="outline" size="sm" className="flex items-center gap-1">
+                <Library className="h-4 w-4" />
+                Library
+              </Button>
+            </Link>
+          </div>
         </div>
-        <h1 className="text-4xl font-semibold mb-3">Unix</h1>
-        <p className="text-unix-muted max-w-2xl mx-auto">
-          Generate beautiful images with a simple prompt. Powered by advanced AI technology.
-        </p>
       </header>
 
       <main className="max-w-5xl mx-auto space-y-8">
@@ -84,7 +131,18 @@ const Index = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <ImageDisplay image={selectedImage} />
                   <div className="space-y-4">
-                    <h2 className="text-xl font-medium">Image Details</h2>
+                    <div className="flex items-center justify-between">
+                      <h2 className="text-xl font-medium">Image Details</h2>
+                      <Button 
+                        onClick={handleSaveImage} 
+                        variant="outline" 
+                        size="sm"
+                        className="flex items-center gap-1"
+                      >
+                        <Save className="h-4 w-4" />
+                        Save to Library
+                      </Button>
+                    </div>
                     <div className="space-y-2">
                       <div>
                         <span className="text-sm text-unix-muted">Prompt</span>
