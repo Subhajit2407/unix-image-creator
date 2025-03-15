@@ -24,6 +24,7 @@ const ImageHistory = ({ images, onSelect, selectedImage }: ImageHistoryProps) =>
               ${selectedImage?.imageUUID === image.imageUUID ? 'ring-2 ring-unix-accent' : 'hover:opacity-90'}
             `}
             onClick={() => onSelect(image)}
+            title={image.positivePrompt}
           >
             <img 
               src={image.imageURL} 

@@ -19,6 +19,7 @@ const Index = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedImages, setGeneratedImages] = useState<GeneratedImage[]>([]);
   const [selectedImage, setSelectedImage] = useState<GeneratedImage | null>(null);
+  const [currentPrompt, setCurrentPrompt] = useState("");
 
   // Save API key to local storage
   useEffect(() => {
@@ -56,6 +57,11 @@ const Index = () => {
     } finally {
       setIsGenerating(false);
     }
+  };
+
+  const handleImageSelect = (image: GeneratedImage) => {
+    setSelectedImage(image);
+    setCurrentPrompt(image.positivePrompt);
   };
 
   const handleSaveImage = () => {
@@ -124,6 +130,7 @@ const Index = () => {
             <ImagePrompt 
               onSubmit={handlePromptSubmit} 
               isGenerating={isGenerating}
+              initialPrompt={currentPrompt}
             />
             
             <div className="mt-12">
@@ -180,7 +187,7 @@ const Index = () => {
 
             <ImageHistory 
               images={generatedImages} 
-              onSelect={setSelectedImage}
+              onSelect={handleImageSelect}
               selectedImage={selectedImage}
             />
           </>

@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sparkles, Loader2, Wand2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -7,10 +7,18 @@ import { Textarea } from "@/components/ui/textarea";
 interface ImagePromptProps {
   onSubmit: (prompt: string) => void;
   isGenerating: boolean;
+  initialPrompt?: string;
 }
 
-const ImagePrompt = ({ onSubmit, isGenerating }: ImagePromptProps) => {
-  const [prompt, setPrompt] = useState("");
+const ImagePrompt = ({ onSubmit, isGenerating, initialPrompt = "" }: ImagePromptProps) => {
+  const [prompt, setPrompt] = useState(initialPrompt);
+
+  // Update the prompt when initialPrompt changes (when user selects an image)
+  useEffect(() => {
+    if (initialPrompt) {
+      setPrompt(initialPrompt);
+    }
+  }, [initialPrompt]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
