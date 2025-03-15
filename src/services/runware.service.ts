@@ -26,13 +26,15 @@ const API_ENDPOINT = "wss://ws-api.runware.ai/v1";
 
 export class RunwareService {
   private ws: WebSocket | null = null;
-  private apiKey: string | null = null;
   private connectionSessionUUID: string | null = null;
   private messageCallbacks: Map<string, (data: any) => void> = new Map();
   private isAuthenticated: boolean = false;
   private connectionPromise: Promise<void> | null = null;
   private reconnectAttempts: number = 0;
   private maxReconnectAttempts: number = 5;
+  
+  // Change apiKey from private to readonly public
+  readonly apiKey: string;
 
   constructor(apiKey: string) {
     this.apiKey = apiKey;
