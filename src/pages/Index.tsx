@@ -195,6 +195,11 @@ const Index = () => {
                   <p className="text-purple-500 mb-4">
                     Enter a prompt above to create your first image
                   </p>
+                  <img 
+                    src="/lovable-uploads/378240cd-f371-42df-93a3-b06c1526bc7c.png" 
+                    alt="Futuristic VR headset" 
+                    className="max-w-xs mx-auto rounded-lg shadow-md" 
+                  />
                 </div>
               )}
             </div>
