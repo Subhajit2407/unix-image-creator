@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 
 const Landing = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-600 to-blue-800 text-white overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-cyan-600 via-purple-600 to-orange-500 text-white overflow-hidden">
       {/* Navigation */}
       <div className="container mx-auto px-4 py-6">
         <nav className="flex justify-between items-center">
-          <div className="text-3xl font-bold">UNIX</div>
+          <div className="text-3xl font-bold">MEWTIC</div>
           <div className="hidden md:flex space-x-8">
             <a href="#" className="hover:text-blue-200 transition-colors">Home</a>
             <a href="#about" className="hover:text-blue-200 transition-colors">About</a>
@@ -17,7 +17,7 @@ const Landing = () => {
             <a href="#contact" className="hover:text-blue-200 transition-colors">Contact</a>
           </div>
           <Link to="/generator">
-            <Button className="bg-white text-blue-600 hover:bg-blue-100 transition-all">
+            <Button className="bg-white text-purple-600 hover:bg-blue-100 transition-all">
               Start Creating
             </Button>
           </Link>
@@ -29,10 +29,10 @@ const Landing = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="z-10">
             <h1 className="text-6xl md:text-7xl font-bold mb-6 tracking-tight">
-              <span className="block">A T</span>
+              <span className="block">MEW</span>
               <span className="inline-flex items-center">
-                <span className="inline-block w-12 h-12 rounded-full bg-green-400 mx-2"></span>
-                MIC
+                <span className="inline-block w-12 h-12 rounded-full bg-cyan-400 mx-2"></span>
+                TIC
               </span>
             </h1>
             <p className="text-xl text-blue-100 mb-10 max-w-md">
@@ -42,16 +42,16 @@ const Landing = () => {
             
             <div className="flex flex-wrap gap-4">
               <Link to="/generator" className="group">
-                <Button variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-blue-600 rounded-full px-8 py-6">
+                <Button variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-purple-600 rounded-full px-8 py-6">
                   Discover
-                  <span className="ml-2 w-8 h-8 rounded-full bg-white text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                  <span className="ml-2 w-8 h-8 rounded-full bg-white text-purple-600 flex items-center justify-center group-hover:bg-purple-600 group-hover:text-white transition-colors">
                     <ArrowRight className="h-4 w-4" />
                   </span>
                 </Button>
               </Link>
               <Link to="/library">
-                <Button variant="outline" className="border-2 border-green-400 bg-transparent text-white hover:bg-green-400 hover:text-blue-800 rounded-full px-8 py-6">
-                  <span className="mr-2 w-8 h-8 rounded-full bg-green-400 text-blue-800 flex items-center justify-center">
+                <Button variant="outline" className="border-2 border-cyan-400 bg-transparent text-white hover:bg-cyan-400 hover:text-purple-800 rounded-full px-8 py-6">
+                  <span className="mr-2 w-8 h-8 rounded-full bg-cyan-400 text-purple-800 flex items-center justify-center">
                     <span className="font-bold">AI</span>
                   </span>
                   Connect
@@ -62,11 +62,11 @@ const Landing = () => {
           
           <div className="relative hidden lg:block">
             <img 
-              src="/lovable-uploads/4736373c-56bd-489f-902a-243b3b643ae7.png" 
-              alt="Futuristic AI figure" 
+              src="/lovable-uploads/108bac81-8998-4dce-8778-0c348862eab7.png" 
+              alt="Colorful AI sphere" 
               className="w-full max-w-md mx-auto rounded-lg shadow-2xl z-10 relative"
             />
-            <div className="absolute -top-10 -left-10 w-full h-full bg-blue-400 rounded-lg filter blur-3xl opacity-30"></div>
+            <div className="absolute -top-10 -left-10 w-full h-full bg-cyan-400 rounded-lg filter blur-3xl opacity-30"></div>
           </div>
         </div>
       </div>
@@ -74,12 +74,12 @@ const Landing = () => {
       {/* Features Section with cards */}
       <div className="container mx-auto px-4 py-20" id="features">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-blue-700/50 backdrop-blur-lg rounded-xl p-6 relative overflow-hidden group hover:bg-blue-600/60 transition-all duration-300">
+          <div className="bg-purple-700/50 backdrop-blur-lg rounded-xl p-6 relative overflow-hidden group hover:bg-purple-600/60 transition-all duration-300">
             <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-pink-500/30 blur-xl"></div>
             <div className="relative z-10 flex gap-4">
               <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
                 <img 
-                  src="/lovable-uploads/4736373c-56bd-489f-902a-243b3b643ae7.png" 
+                  src="/lovable-uploads/108bac81-8998-4dce-8778-0c348862eab7.png" 
                   alt="Feature" 
                   className="w-full h-full object-cover"
                 />
@@ -93,8 +93,8 @@ const Landing = () => {
             </div>
           </div>
           
-          <div className="bg-blue-700/50 backdrop-blur-lg rounded-xl p-6 relative overflow-hidden group hover:bg-blue-600/60 transition-all duration-300">
-            <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-purple-500/30 blur-xl"></div>
+          <div className="bg-purple-700/50 backdrop-blur-lg rounded-xl p-6 relative overflow-hidden group hover:bg-purple-600/60 transition-all duration-300">
+            <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-cyan-500/30 blur-xl"></div>
             <div className="relative z-10 flex gap-4">
               <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
                 <img 
@@ -112,8 +112,8 @@ const Landing = () => {
             </div>
           </div>
           
-          <div className="bg-blue-700/50 backdrop-blur-lg rounded-xl p-6 relative overflow-hidden group hover:bg-blue-600/60 transition-all duration-300">
-            <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-cyan-500/30 blur-xl"></div>
+          <div className="bg-purple-700/50 backdrop-blur-lg rounded-xl p-6 relative overflow-hidden group hover:bg-purple-600/60 transition-all duration-300">
+            <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-orange-500/30 blur-xl"></div>
             <div className="relative z-10 flex gap-4">
               <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
                 <img 
@@ -144,7 +144,7 @@ const Landing = () => {
           </p>
           
           <Link to="/generator">
-            <Button className="bg-white text-blue-600 hover:bg-blue-100 transition-all px-8 py-6 text-lg">
+            <Button className="bg-white text-purple-600 hover:bg-blue-100 transition-all px-8 py-6 text-lg">
               Start Creating
               <Sparkles className="ml-2 h-5 w-5" />
             </Button>
@@ -167,11 +167,11 @@ const Landing = () => {
         <div className="max-w-md mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Create?</h2>
           <p className="text-blue-100 mb-8">
-            Get started with Unix and transform your ideas into stunning visuals today.
+            Get started with Mewtic and transform your ideas into stunning visuals today.
           </p>
           
           <Link to="/generator">
-            <Button className="bg-white text-blue-600 hover:bg-blue-100 transition-all px-8 py-6 text-lg w-full">
+            <Button className="bg-white text-purple-600 hover:bg-blue-100 transition-all px-8 py-6 text-lg w-full">
               Start Creating
               <Sparkles className="ml-2 h-5 w-5" />
             </Button>
@@ -180,9 +180,9 @@ const Landing = () => {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-blue-500/30 py-8 mt-12">
+      <footer className="border-t border-purple-500/30 py-8 mt-12">
         <div className="container mx-auto px-4 text-center text-blue-200">
-          <p>© {new Date().getFullYear()} Unix. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Mewtic. All rights reserved.</p>
         </div>
       </footer>
     </div>

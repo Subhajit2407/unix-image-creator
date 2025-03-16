@@ -3,8 +3,16 @@ import { useState, useEffect } from "react";
 import { Toaster } from "sonner";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Save, Library } from "lucide-react";
+import { ArrowLeft, Save, Library, Key } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { 
+  Sheet, 
+  SheetContent, 
+  SheetDescription, 
+  SheetHeader, 
+  SheetTitle, 
+  SheetTrigger 
+} from "@/components/ui/sheet";
 import ApiKeyInput from "@/components/ApiKeyInput";
 import ImagePrompt from "@/components/ImagePrompt";
 import ImageDisplay from "@/components/ImageDisplay";
@@ -13,7 +21,7 @@ import { getRunwareService, type GeneratedImage } from "@/services/runware.servi
 
 const Index = () => {
   const [apiKey, setApiKey] = useState<string>(() => {
-    return localStorage.getItem("unix_api_key") || "";
+    return localStorage.getItem("mewtic_api_key") || "";
   });
   
   const [isGenerating, setIsGenerating] = useState(false);
@@ -23,7 +31,7 @@ const Index = () => {
   // Save API key to local storage
   useEffect(() => {
     if (apiKey) {
-      localStorage.setItem("unix_api_key", apiKey);
+      localStorage.setItem("mewtic_api_key", apiKey);
     }
   }, [apiKey]);
 
@@ -63,7 +71,7 @@ const Index = () => {
     
     try {
       // Get existing saved images
-      const savedImagesJson = localStorage.getItem("unix_saved_images");
+      const savedImagesJson = localStorage.getItem("mewtic_saved_images");
       const savedImages = savedImagesJson ? JSON.parse(savedImagesJson) : [];
       
       // Check if image is already saved
@@ -78,7 +86,7 @@ const Index = () => {
       
       // Add new image to saved images
       const updatedSavedImages = [selectedImage, ...savedImages];
-      localStorage.setItem("unix_saved_images", JSON.stringify(updatedSavedImages));
+      localStorage.setItem("mewtic_saved_images", JSON.stringify(updatedSavedImages));
       
       toast.success("Image saved to library");
     } catch (error) {
@@ -88,16 +96,16 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white px-4 py-12 md:py-20">
+    <div className="min-h-screen bg-gradient-to-br from-cyan-50 via-white to-purple-50 px-4 py-12 md:py-20">
       <Toaster position="top-center" />
       
       <header className="max-w-5xl mx-auto mb-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <div className="inline-block px-4 py-1 mb-2 rounded-full bg-unix-subtle text-unix-muted text-sm font-medium">
+            <div className="inline-block px-4 py-1 mb-2 rounded-full bg-purple-100 text-purple-700 text-sm font-medium">
               Image Generation
             </div>
-            <h1 className="text-3xl font-semibold">Unix Generator</h1>
+            <h1 className="text-3xl font-semibold">Mewtic Generator</h1>
           </div>
           <div className="flex flex-wrap gap-2">
             <Link to="/">
@@ -112,6 +120,27 @@ const Index = () => {
                 Library
               </Button>
             </Link>
+            {apiKey && (
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="sm" className="flex items-center gap-1">
+                    <Key className="h-4 w-4" />
+                    Change API Key
+                  </Button>
+                </SheetTrigger>
+                <SheetContent>
+                  <SheetHeader>
+                    <SheetTitle>Update API Key</SheetTitle>
+                    <SheetDescription>
+                      Enter your new Runware API key
+                    </SheetDescription>
+                  </SheetHeader>
+                  <div className="py-6">
+                    <ApiKeyInput onSubmit={handleApiKeySubmit} />
+                  </div>
+                </SheetContent>
+              </Sheet>
+            )}
           </div>
         </div>
       </header>
@@ -124,6 +153,7 @@ const Index = () => {
             <ImagePrompt 
               onSubmit={handlePromptSubmit} 
               isGenerating={isGenerating}
+              initialPrompt={selectedImage?.positivePrompt}
             />
             
             <div className="mt-12">
@@ -145,33 +175,24 @@ const Index = () => {
                     </div>
                     <div className="space-y-2">
                       <div>
-                        <span className="text-sm text-unix-muted">Prompt</span>
+                        <span className="text-sm text-purple-500">Prompt</span>
                         <p className="mt-1">{selectedImage.positivePrompt}</p>
                       </div>
                       <div>
-                        <span className="text-sm text-unix-muted">Seed</span>
+                        <span className="text-sm text-purple-500">Seed</span>
                         <p className="mt-1">{selectedImage.seed}</p>
                       </div>
                       <div>
-                        <span className="text-sm text-unix-muted">Model</span>
+                        <span className="text-sm text-purple-500">Model</span>
                         <p className="mt-1">runware:100@1</p>
                       </div>
-                    </div>
-
-                    <div className="pt-4">
-                      <button 
-                        onClick={() => setApiKey("")}
-                        className="text-sm text-unix-muted hover:text-unix-accent transition-colors"
-                      >
-                        Change API Key
-                      </button>
                     </div>
                   </div>
                 </div>
               ) : (
-                <div className="bg-unix-subtle rounded-2xl p-10 text-center animate-fade-in">
+                <div className="bg-purple-50 rounded-2xl p-10 text-center animate-fade-in">
                   <h3 className="text-xl font-medium mb-2">No images generated yet</h3>
-                  <p className="text-unix-muted mb-4">
+                  <p className="text-purple-500 mb-4">
                     Enter a prompt above to create your first image
                   </p>
                 </div>
@@ -187,8 +208,8 @@ const Index = () => {
         )}
       </main>
 
-      <footer className="max-w-5xl mx-auto mt-20 pt-6 border-t border-unix-subtle text-center text-sm text-unix-muted">
-        <p>© {new Date().getFullYear()} Unix. All rights reserved.</p>
+      <footer className="max-w-5xl mx-auto mt-20 pt-6 border-t border-purple-100 text-center text-sm text-purple-400">
+        <p>© {new Date().getFullYear()} Mewtic. All rights reserved.</p>
       </footer>
     </div>
   );

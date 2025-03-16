@@ -21,7 +21,7 @@ const ImageHistory = ({ images, onSelect, selectedImage }: ImageHistoryProps) =>
             key={image.imageUUID || index}
             className={`
               relative aspect-square rounded-xl overflow-hidden cursor-pointer transition-all duration-300
-              ${selectedImage?.imageUUID === image.imageUUID ? 'ring-2 ring-unix-accent shadow-lg' : 'hover:opacity-90 hover:shadow-md'}
+              ${selectedImage?.imageUUID === image.imageUUID ? 'ring-2 ring-cyan-400 shadow-lg' : 'hover:opacity-90 hover:shadow-md'}
               group
             `}
             onClick={() => onSelect(image)}
