@@ -62,8 +62,8 @@ const Landing = () => {
           
           <div className="relative hidden lg:block">
             <img 
-              src="/lovable-uploads/108bac81-8998-4dce-8778-0c348862eab7.png" 
-              alt="Colorful AI sphere" 
+              src="/lovable-uploads/5feb59e2-ae96-4e07-bf63-2d3fcdf1e4cb.png" 
+              alt="Futuristic VR headset" 
               className="w-full max-w-md mx-auto rounded-lg shadow-2xl z-10 relative"
             />
             <div className="absolute -top-10 -left-10 w-full h-full bg-cyan-400 rounded-lg filter blur-3xl opacity-30"></div>
